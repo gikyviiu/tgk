@@ -1,0 +1,72 @@
+<div class="mb-3">
+  <label>Сотрудник</label>
+  <select name="employee_id" class="form-control" required>
+    {% for e in employees %}
+    <option value="{{ e.id }}" {% if cert and cert.employee_id == e.id %}selected{% endif %}>{{ e.full_name }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label>Серийный номер</label>
+  <input type="text" name="serial_number" class="form-control" value="{{ cert.serial_number if cert else '' }}" required>
+</div>
+<div class="mb-3">
+  <label>Издатель (Issuer)</label>
+  <input type="text" name="issuer" class="form-control" value="{{ cert.issuer if cert else '' }}" required>
+</div>
+<div class="mb-3">
+  <label>Субъект (Subject)</label>
+  <input type="text" name="subject" class="form-control" value="{{ cert.subject if cert else '' }}" required>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <label>Действует с</label>
+    <input type="datetime-local" name="valid_from" class="form-control" 
+           value="{% if cert %}{{ cert.valid_from.strftime('%Y-%m-%dT%H:%M') }}{% endif %}" required>
+  </div>
+  <div class="col-md-6">
+    <label>Действует до</label>
+    <input type="datetime-local" name="valid_to" class="form-control" 
+           value="{% if cert %}{{ cert.valid_to.strftime('%Y-%m-%dT%H:%M') }}{% endif %}" required>
+  </div>
+</div>
+
+<div class="mb-3">
+  <label>SHA-1 Отпечаток</label>
+  <input type="text" name="thumbprint_sha1" class="form-control" value="{{ cert.thumbprint_sha1 if cert else '' }}">
+</div>
+<div class="mb-3">
+  <label>SHA-256 Отпечаток</label>
+  <input type="text" name="thumbprint_sha256" class="form-control" value="{{ cert.thumbprint_sha256 if cert else '' }}">
+</div>
+<div class="mb-3">
+  <label>Открытый ключ (PEM)</label>
+  <textarea name="public_key" class="form-control" rows="4">{{ cert.public_key if cert else '' }}</textarea>
+</div>
+<div class="mb-3">
+  <label>Назначение ключа (keyUsage)</label>
+  <input type="text" name="key_usage" class="form-control" value="{{ cert.key_usage if cert else '' }}">
+</div>
+<div class="mb-3">
+  <label>Тип сертификата</label>
+  <select name="certificate_type" class="form-control">
+    <option value="Квалифицированный" {% if cert and cert.certificate_type == 'Квалифицированный' %}selected{% endif %}>Квалифицированный</option>
+    <option value="Неквалифицированный" {% if cert and cert.certificate_type == 'Неквалифицированный' %}selected{% endif %}>Неквалифицированный</option>
+    <option value="КЭП" {% if cert and cert.certificate_type == 'КЭП' %}selected{% endif %}>КЭП</option>
+    <option value="УЦ" {% if cert and cert.certificate_type == 'УЦ' %}selected{% endif %}>УЦ</option>
+  </select>
+</div>
+<div class="mb-3">
+  <label>Место хранения (токен, HSM и т.д.)</label>
+  <input type="text" name="storage_location" class="form-control" value="{{ cert.storage_location if cert else '' }}">
+</div>
+<div class="mb-3">
+  <label>Подсказка к PIN</label>
+  <input type="text" name="pin_code_hint" class="form-control" value="{{ cert.pin_code_hint if cert else '' }}">
+</div>
+<div class="mb-3">
+  <label>Примечания</label>
+  <textarea name="notes" class="form-control" rows="3">{{ cert.notes if cert else '' }}</textarea>
+</div>

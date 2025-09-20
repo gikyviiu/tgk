@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>✏️ Редактировать сертификат</h2>
+
+<form method="POST">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Сотрудник</label>
+      <select name="employee_id" class="form-control" required>
+        {% for e in employees %}
+        <option value="{{ e.id }}" {% if e.id == cert.employee_id %}selected{% endif %}>
+          {{ e.full_name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Серийный номер</label>
+      <input type="text" name="serial_number" class="form-control" value="{{ cert.serial_number }}" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Тип сертификата</label>
+      <select name="certificate_type" class="form-control">
+        <option value="Квалифицированный" {% if cert.certificate_type == "Квалифицированный" %}selected{% endif %}>Квалифицированный</option>
+        <option value="Неквалифицированный" {% if cert.certificate_type == "Неквалифицированный" %}selected{% endif %}>Неквалифицированный</option>
+        <option value="КЭП" {% if cert.certificate_type == "КЭП" %}selected{% endif %}>КЭП</option>
+        <option value="УЦ" {% if cert.certificate_type == "УЦ" %}selected{% endif %}>УЦ</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Издатель (Issuer)</label>
+    <input type="text" name="issuer" class="form-control" value="{{ cert.issuer }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Субъект (Subject)</label>
+    <input type="text" name="subject" class="form-control" value="{{ cert.subject }}" required>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Действует с</label>
+      <input type="datetime-local" name="valid_from" class="form-control"
+             value="{{ cert.valid_from.strftime('%Y-%m-%dT%H:%M') if cert.valid_from else '' }}" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Действует до</label>
+      <input type="datetime-local" name="valid_to" class="form-control"
+             value="{{ cert.valid_to.strftime('%Y-%m-%dT%H:%M') if cert.valid_to else '' }}" required>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">SHA-1 Отпечаток</label>
+      <input type="text" name="thumbprint_sha1" class="form-control" value="{{ cert.thumbprint_sha1 }}">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">SHA-256 Отпечаток</label>
+      <input type="text" name="thumbprint_sha256" class="form-control" value="{{ cert.thumbprint_sha256 }}">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Открытый ключ (PEM)</label>
+    <textarea name="public_key" class="form-control" rows="4">{{ cert.public_key }}</textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Назначение ключа (Key Usage)</label>
+    <input type="text" name="key_usage" class="form-control" value="{{ cert.key_usage }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Место хранения (токен, HSM и т.п.)</label>
+    <input type="text" name="storage_location" class="form-control" value="{{ cert.storage_location }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Подсказка к PIN-коду</label>
+    <input type="text" name="pin_code_hint" class="form-control" value="{{ cert.pin_code_hint }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Примечания</label>
+    <textarea name="notes" class="form-control" rows="3">{{ cert.notes }}</textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+  <a href="{{ url_for('index') }}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!-- {% extends "base.html" %}
+
+{% block content %}
+<h2>Сертификаты ЭП</h2>
+<a href="{{ url_for('add') }}" class="btn btn-success mb-3">➕ Добавить</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Сотрудник</th>
+      <th>Серийный №</th>
+      <th>Срок до</th>
+      <th>Статус</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in certificates %}
+    <tr class="{{ c.status_class }}">
+      <td>{{ c.full_name }}<br><small>{{ c.position }}</small></td>
+      <td><code>{{ c.serial_number }}</code></td>
+      <td>{{ c.valid_to.strftime('%d.%m.%Y') }}</td>
+      <td>
+        {% if c.days_left < 0 %}
+          <span class="badge bg-danger">Просрочен</span>
+        {% elif c.days_left <= 7 %}
+          <span class="badge bg-warning text-dark">Скоро истекает</span>
+        {% else %}
+          <span class="badge bg-success">Активен</span>
+        {% endif %}
+      </td>
+      <td>
+        <a href="{{ url_for('view', cert_id=c.id) }}" class="btn btn-sm btn-info">👁️</a>
+        <a href="{{ url_for('edit', cert_id=c.id) }}" class="btn btn-sm btn-warning">✏️</a>
+        <a href="{{ url_for('delete', cert_id=c.id) }}" class="btn btn-sm btn-danger"
+           onclick="return confirm('Удалить сертификат?')">🗑️</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %} -->

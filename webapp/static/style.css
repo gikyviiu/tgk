@@ -1,0 +1,38 @@
+/* .expired { color: #dc3545; }
+.warning { color: #ffc107; }
+.active { color: #28a745; } */
+
+/* Стили для основных кнопок */
+.btn-primary {
+    background-color: #007bff; /* Текущий синий цвет */
+    border-color: #007bff;
+}
+
+/* Изменяем цвет кнопок на другой */
+.btn-primary {
+    background-color: #3498db; /* Новый синий цвет */
+    border-color: #3498db;
+    color: white; /* Цвет текста */
+}
+
+/* Активное состояние кнопки */
+.btn-primary:hover {
+    background-color: #2980b9; /* Темнее при наведении */
+    border-color: #2980b9;
+}
+
+/* Другие варианты цветов */
+.btn-info {
+    background-color: #5bc0de; /* Светло-синий */
+    border-color: #5bc0de;
+}
+
+.btn-warning {
+    background-color: #f0ad4e; /* Оранжевый */
+    border-color: #f0ad4e;
+}
+
+.btn-danger {
+    background-color: #d9534f; /* Красный */
+    border-color: #d9534f;
+}

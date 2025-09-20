@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>➕ Добавить сертификат</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label>Сотрудник</label>
+    <select name="employee_id" class="form-control" required>
+      {% for e in employees %}
+      <option value="{{ e.id }}">{{ e.full_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Серийный номер</label>
+    <input type="text" name="serial_number" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Издатель (Issuer)</label>
+    <input type="text" name="issuer" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Субъект (Subject)</label>
+    <input type="text" name="subject" class="form-control" required>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Действует с</label>
+      <input type="datetime-local" name="valid_from" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+      <label>Действует до</label>
+      <input type="datetime-local" name="valid_to" class="form-control" required>
+    </div>
+  </div>
+  <!-- Остальные поля аналогично -->
+  <button type="submit" class="btn btn-primary">Сохранить</button>
+  <a href="{{ url_for('index') }}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
