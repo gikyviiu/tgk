@@ -4,3 +4,8 @@ DB_HOST = 'localhost'
 DB_USER = 'root'
 DB_PASSWORD = 'sWo9kuH%YQ2dqcE'
 DB_NAME = 'digital_signatures'
+
+
+# Данные для админ-панели (опционально)
+PANEL_LOGIN = 'admin'
+PANEL_PASSWORD = 'kdgj24#@%VFESF@rfvgf'
