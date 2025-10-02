@@ -21,16 +21,16 @@ def get_db_connection():
 def send_welcome(message):
     keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn1 = telebot.types.KeyboardButton("🔐 Мой статус")
-    btn2 = telebot.types.KeyboardButton("📅 Сколько осталось")
+    #btn2 = telebot.types.KeyboardButton("📅 Сколько осталось")
     btn3 = telebot.types.KeyboardButton("❓ Помощь")
-    keyboard.add(btn1, btn2)
+    keyboard.add(btn1)
     keyboard.add(btn3)
 
     bot.reply_to(
         message,
         f"👋 Привет, {message.from_user.first_name}!\n"
         "Я — бот для управления электронной подписью.\n"
-        "Выбери действие в меню или используй команды:",
+        "Выбери действие в меню.",
         reply_markup=keyboard
     )
 
