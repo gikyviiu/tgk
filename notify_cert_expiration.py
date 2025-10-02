@@ -10,7 +10,7 @@ CHANNEL_ID = "-1002749201183"
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '29242233',
+    'password': 'sWo9kuH%YQ2dqcE',
     'database': 'digital_signatures'
 }
 
