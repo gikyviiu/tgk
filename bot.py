@@ -185,8 +185,8 @@ def show_admin_panel(message):
             admin_message = (
                 "🛡️ <b>Доступ к админ-панели</b>\n\n"
                 f"🌐 <b>Ссылка:</b> <a href='{web_panel_url}'>Перейти к панели управления</a>\n"
-                f"🔑 <b>Логин:</b> <code>{login}</code>\n"
-                f"🔒 <b>Пароль:</b> <code>{password}</code>\n\n"
+                f"🔑 <b>Логин:</b> <tg-spoiler>{login}</tg-spoiler>\n"
+                f"🔒 <b>Пароль:</b> <tg-spoiler>{password}</tg-spoiler>\n\n"
                 "⚠️ Не передавайте эти данные третьим лицам!"
             )
             bot.send_message(message.chat.id, admin_message, parse_mode='HTML')

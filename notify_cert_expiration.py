@@ -2,16 +2,17 @@
 import mysql.connector
 import requests
 from datetime import datetime
+import config
 
 # --- Настройки ---
 TOKEN = "8430513965:AAFdKtwhFztn1UC2zUbhF4G3mMQMRyT1CIo"  
 CHANNEL_ID = "-1002749201183"  
 
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'sWo9kuH%YQ2dqcE',
-    'database': 'digital_signatures'
+    'host': config.DB_HOST,
+    'user': config.DB_USER,
+    'password': config.DB_PASSWORD,
+    'database': config.DB_NAME
 }
 
 # --- Функция с логированием времени ---
