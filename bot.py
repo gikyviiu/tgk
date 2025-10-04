@@ -41,11 +41,10 @@ def send_welcome(message):
             bot.reply_to(
                 message,
                 f"👋 Здравствуйте, {message.from_user.first_name}!\n\n"
-                "❌ Ваш Telegram-аккаунт <b>не привязан</b> к системе управления электронными подписями.\n\n"
+                "Ваш Telegram-аккаунт <b>не привязан</b> к нашей базе данных.\n\n"
                 "Чтобы получить доступ:\n"
                 "1. Обратитесь к администратору\n"
-                "2. Получите одноразовый код активации или команду на привязку\n\n"
-                "📬 <b>Техническая поддержка:</b>\n"
+                "📬 <b>Контакты:</b>\n"
                 "📞 <code>+7 (495) 123-45-67</code>\n"
                 "📧 <code>ep-support@company.local</code>",
                 parse_mode='HTML'
@@ -80,7 +79,6 @@ def send_welcome(message):
             message,
             f"👋 Привет, <b>{message.from_user.first_name}</b>!\n"
             f"Вы вошли как <b>{full_name}</b>.\n"
-            "Я — бот для управления электронной подписью.\n"
             "Выберите действие в меню ниже.",
             reply_markup=keyboard,
             parse_mode='HTML'
@@ -104,7 +102,7 @@ def send_help(message):
         "🔸 /start — главное меню\n"
         "🔸 /status — статус вашего сертификата\n"
         "🔸 /help — это сообщение\n\n"
-        "📬 <b>Тех. поддержка</b>\n"
+        "📬 <b>Контакты:</b>\n"
         "📱 Телефон: <code>+7 (495) 123-45-67</code>\n"
         "📧 Email: <code>ep-support@company.local</code>\n"
         "👤 Telegram: <a href='https://t.me/@deeanahhh'>@deeanahhh</a>"
@@ -178,8 +176,8 @@ def show_admin_panel(message):
         conn.close()
 
         if result and result[0] == 'admin':
-            web_panel_url = "https://admin.company.local/ep-dashboard"
-            login = config.PANEL_LOGIN  # Рекомендуется хранить в config.py
+            web_panel_url = "http://127.0.0.1:5000"
+            login = config.PANEL_LOGIN  
             password = config.PANEL_PASSWORD
 
             admin_message = (

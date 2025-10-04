@@ -7,7 +7,7 @@ import requests
 import hashlib
 
 app = Flask(__name__)
-app.secret_key = 'skebob'  
+app.secret_key = 'ybw45qb'  
 app.config.from_object(Config)
 
 def get_db_connection():

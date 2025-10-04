@@ -67,7 +67,6 @@ def check_expiring_certs():
                 message += f"📧 {email}\n"
                 message += f"🔢 Серийный: <code>{serial}</code>\n"
                 message += f"📅 Окончание: {valid_to}\n"
-                message += f"🔍 SHA-256: <code>{thumbprint}</code>\n"
                 message += "────────────────────\n"
             send_telegram_message(message)
         else:
