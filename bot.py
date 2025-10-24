@@ -31,7 +31,7 @@ def send_welcome(message):
         cursor.execute("""
             SELECT e.full_name 
             FROM employees e 
-            WHERE e.telegram_id = %s
+            WHERE e.telegram_id = %s 
         """, (user_id,))
         employee = cursor.fetchone()
 
@@ -59,20 +59,6 @@ def send_welcome(message):
         btn_status = telebot.types.KeyboardButton("🔐 Мой статус")
         btn_help = telebot.types.KeyboardButton("❓ Помощь")
         keyboard.add(btn_status, btn_help)
-
-        # Проверяем, является ли пользователь админом (в таблице users)
-        try:
-            conn = get_db_connection()
-            cursor = conn.cursor()
-            cursor.execute("SELECT role FROM users WHERE telegram_id = %s", (user_id,))
-            admin_result = cursor.fetchone()
-            conn.close()
-
-            if admin_result and admin_result[0] == 'admin':
-                btn_admin = telebot.types.KeyboardButton("⚙️ Админ-панель")
-                keyboard.add(btn_admin)
-        except Exception as e:
-            print(f"[WARNING] Не удалось проверить роль пользователя {user_id}: {e}")
 
         # Отправляем приветствие с меню
         bot.reply_to(

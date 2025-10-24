@@ -1,0 +1,13 @@
+# Проверяем, является ли пользователь админом (в таблице users)
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT role FROM users WHERE telegram_id = %s", (user_id,))
+            admin_result = cursor.fetchone()
+            conn.close()
+
+            if admin_result and admin_result[0] == 'admin':
+                btn_admin = telebot.types.KeyboardButton("⚙️ Админ-панель")
+                keyboard.add(btn_admin)
+        except Exception as e:
+            print(f"[WARNING] Не удалось проверить роль пользователя {user_id}: {e}")
